@@ -1,5 +1,6 @@
 # Context-Aware Online Adaptation of Mixed Reality Interfaces
 AUTHORS: ['David Lindlbauer'](https://ait.ethz.ch/people/lindlbauer/), ['Anna Maria Feit'](https://ait.ethz.ch/people/feitan/), ['Otmar Hilliges'](https://ait.ethz.ch/people/hilliges/)
+
 PUBLICATION: ['ACM UIST'](https://uist.acm.org/uist2019/), New Orleans, LA, USA, October 2019
 
 ## Code
