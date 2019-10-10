@@ -1,4 +1,7 @@
-# Deep Inertial Poser: Learning to Reconstruct Human Pose from Sparse Inertial Measurements in Real Time
+# Context-Aware Online Adaptation of Mixed Reality Interfaces
+AUTHORS: ['David Lindlbauer'](https://ait.ethz.ch/people/lindlbauer/), ['Anna Maria Feit'](https://ait.ethz.ch/people/feitan/), ['Otmar Hilliges'](https://ait.ethz.ch/people/hilliges/)
+PUBLICATION: ['ACM UIST'](https://uist.acm.org/uist2019/), New Orleans, LA, USA, October 2019
+
 ## Code
 This repository contains the code published alongside with our UIST 2019 [paper](https://ait.ethz.ch/projects/2019/computationalMR/downloads/computationalMR_preprint.pdf). It is organised as follows: [`2D_playground`](2D_playground) contains an example of a 2D UI that is optimized using integer linear programming based on adjustable parameters. [`3d_comp_mr`](3d_comp_mr) contains Unity and Python scripts to run the optimization in real time. Please refer to the READMEs in the respective subfolder for more details.
 
