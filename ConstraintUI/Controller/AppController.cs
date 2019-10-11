@@ -1,0 +1,193 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Controls;
+using System.Windows.Data;
+using ConstraintUI.Model;
+using ConstraintUI.Optimization;
+using ConstraintUI.Util;
+using ConstraintUI.View;
+
+namespace ConstraintUI.Controller
+{
+    public class AppController
+    {
+        private readonly AppModel _appModel;
+        private readonly ViewModel _viewModel;
+
+        private Optimizer _optimizer;
+
+        public AppController(AppModel appModel, ViewModel viewModel)
+        {
+            _appModel = appModel;
+            _viewModel = viewModel;
+
+            _optimizer = new Optimizer(_appModel.OptimizationModel);
+        }
+
+        public void StartOptimization()
+        {
+            UpdateOptimizerModel();
+            _optimizer.StartOptimization();
+
+            SelectSolution(0);
+            UpdateModelForCurrentSolution();
+        }
+
+        private void UpdateOptimizerModel()
+        {
+            _appModel.OptimizationModel.Elements.Clear();
+            _appModel.OptimizationModel.Elements.AddRange(_appModel.Elements);
+
+            _appModel.OptimizationModel.UserModel = _appModel.User;
+        }
+
+        public void InitFakeViewModel(MainWindow mainWindow)
+        {
+            var random = new Random();
+
+            for (int i = 0; i < 10; i++)
+            {
+                var element = new ElementModel();
+                element.Identifier = i;
+                element.Importance = random.NextDouble();
+                element.MaxLevelOfDetail = random.Next(2, 6);
+                element.CurrentLevelOfDetail = random.Next(1, element.MaxLevelOfDetail + 1);
+                element.MaxCognitiveLoad = Constants.INITIAL_ELEMENT_MAX_COG_LOAD_OFFSET + (1.0 - Constants.INITIAL_ELEMENT_MAX_COG_LOAD_OFFSET) * random.NextDouble();
+                element.Visibility = 0;
+
+                _appModel.Elements.Add(element);
+            }
+
+            _appModel.User.CognitiveCapacity = Constants.INITIAL_COGNITIVE_CAPACITY;
+
+            _appModel.OptimizationModel.NumMinPlacementSlots = Constants.MIN_PLACEMENT_SLOTS;
+            _appModel.OptimizationModel.NumMaxPlacementSlots = Constants.TOTAL_NUM_VIEW_SLOTS;
+            _appModel.OptimizationModel.VisibilityReward = Constants.INITIAL_VISIBILITY_REWARD;
+            _appModel.OptimizationModel.CognitiveLoadOnsetPenalty = Constants.INITIAL_COGNITIVE_LOAD_ONSET_PENALTY;
+            _appModel.OptimizationModel.CognitiveLoadOnsetPenaltyDecay = Constants.INITIAL_COGNITIVE_LOAD_ONSET_PENALTY_DECAY_TIMESTEPS;
+        }
+
+        public void InitModels()
+        {
+            foreach (var element in _appModel.Elements)
+            {
+                _viewModel.ElementCandidates.Add(element);
+            }
+        }
+
+        public void SelectSolution(int selectedSolutionIndex)
+        {
+            _viewModel.ModelIsFeasible = _appModel.OptimizationModel.IsFeasible;
+            _viewModel.CurrentObjective = 0;
+
+            _viewModel.ViewElements.Clear();
+            _viewModel.ElementCandidates.Clear();
+
+            _viewModel.CurrentNumSolutions = _appModel.OptimizationModel.Solutions.Count;
+
+            if (!_viewModel.ModelIsFeasible)
+                return;
+
+            _viewModel.SelectedSolution = selectedSolutionIndex;
+            var solution = _appModel.OptimizationModel.Solutions[selectedSolutionIndex];
+
+            _viewModel.CurrentObjective = solution.Objective;
+
+            foreach (var appModelElement in _appModel.Elements)
+            {
+                appModelElement.Visibility = 0.0;
+                appModelElement.CurrentLevelOfDetail = 1;
+            }
+
+            foreach (var element in solution.SolutionElements)
+            {
+                var appElement = _appModel.Elements.Single(e => e.Identifier == element.Identifier);
+
+                foreach (var key in element.LodAndVisiblityDictionary.Keys)
+                {
+                    var visibility = element.LodAndVisiblityDictionary[key];
+
+                    if (visibility > 0.0)
+                    {
+                        appElement.Visibility = 1.0;
+                        appElement.CurrentLevelOfDetail = key + 1;
+                    }
+                }
+            }
+        }
+
+        public void UpdateModelForCurrentSolution()
+        {
+            var visibileElements = _appModel.Elements.Where(element => element.Visibility > 0.0)
+                .OrderByDescending(CalcUtil.GetCurrentUtilityForElement).ToList();
+
+            foreach (var element in _appModel.Elements)
+            {
+                if (!visibileElements.Contains(element))
+                {
+                    _viewModel.ElementCandidates.Add(element);
+                    element.LastIndex = -1;
+                    element.TimeVisible = 0;
+                }
+            }
+
+            var tempViewElements = new List<ElementModel>();
+            for (var i = 0; i < Constants.TOTAL_NUM_VIEW_SLOTS; i++)
+            {
+                tempViewElements.Add(null);
+            }
+
+            var fixedIndexElements = visibileElements.Where(element => element.LastIndex > -1).ToList();
+            var newElements = visibileElements.Where(element => element.LastIndex == -1).ToList();
+
+            foreach (var element in fixedIndexElements)
+            {
+                element.TimeVisible++;
+                tempViewElements[element.LastIndex] = element;
+            }
+
+            foreach (var element in newElements)
+            {
+                for (int j = 0; j < Constants.TOTAL_NUM_VIEW_SLOTS; j++)
+                {
+                    if (tempViewElements[j] == null)
+                    {
+                        tempViewElements[j] = element;
+                        element.LastIndex = j;
+                        break;
+                    }
+                }
+            }
+
+            foreach (var tempViewElement in tempViewElements)
+            {
+                _viewModel.ViewElements.Add(tempViewElement);
+            }
+
+            _viewModel.UserCognitiveLoad = visibileElements.Sum(element => element.CurrentCognitiveLoad);
+        }
+
+        public void ResetSolution()
+        {
+            _viewModel.ViewElements.Clear();
+            _viewModel.ElementCandidates.Clear();
+
+            _appModel.OptimizationModel.Solutions.Clear();
+
+            _viewModel.CurrentNumSolutions = 0;
+            _viewModel.CurrentObjective = 0;
+
+            foreach (var element in _appModel.Elements)
+            {
+                element.Visibility = 0;
+                element.CurrentLevelOfDetail = 1;
+                element.LastIndex = -1;
+                element.TimeVisible = 0;
+
+                _viewModel.ElementCandidates.Add(element);
+            }
+
+        }
+    }
+}
