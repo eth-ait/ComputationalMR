@@ -24,7 +24,7 @@ For the interface, the *Extended Wpf Toolkit 3.4.0* is a also required. To insta
 
 This is how the software looks like:
 
-![Image of ConstraintUI testbox](images/constraintUI-testbox.PNG)
+![Image of ConstraintUI testbox](images/constraintUI-testbox.PNG | width=400)
 
 
 The main code for the optimization is in *Optimization\Optimizer.cs*. On the top left side are the constraints (cognitive capacity and maximum number of slots to be filled), in the individual elements their input variables (importance and cognitive load when displayed, *MaxCogLoad*). You can run the optimization once by clicking the *Optimize* button, or continuously every time the cognitive capacity constraint changes it value (slider on the top).
@@ -33,7 +33,7 @@ The main code for the optimization is in *Optimization\Optimizer.cs*. On the top
 
 
 ## Computational MR
-The main code of the paper. Tested with Unity 2018.3.6f1.
+The main code of the paper. Tested with Unity 2018.3.6f1. 
 The project consists of two main scenes, *MainScene-AR* and *MainScene-VR*. Both use similar mechanisms, the former uses the ZED RGB-D camera to deliver a MR pass-through experience, whereas the later is purely in VR.  
 
 Each scene consists of a set of applications, which are optimized based on the current cognitive load. They can be manually placed by the user using the controller. The main object that handles the application is the *AppController*.
@@ -49,7 +49,7 @@ Here is an example with as little as possible constraints of how to use the Unit
 6) Change to auto-optimize everytime the cognitive capacity undergoes a meaningful changes
 7) Change cognitive capacity
 
-![Image of ConstraintUI testbox](images/unity.gif)
+![Image of ConstraintUI testbox](images/unity.gif | width=400)
 
 ### Dependencies
 
