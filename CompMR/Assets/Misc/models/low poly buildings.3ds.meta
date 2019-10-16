@@ -1,0 +1,188 @@
+fileFormatVersion: 2
+guid: 37d72348d69ff854393b1ec9de24409d
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Highr
+    100002: Highr1
+    100004: Highr2
+    100006: Highr3
+    100008: Highr4
+    100010: Highr5
+    100012: Highr6
+    100014: Highr7
+    100016: Highr8
+    100018: Highrise_1
+    100020: highrise_1
+    100022: Highrise_2
+    100024: Highrise_3
+    100026: Highrise_4
+    100028: Highrise_5
+    100030: Highrise_6
+    100032: Highrise_7
+    100034: Highrise_8
+    100036: Highrise_9
+    100038: //RootNode
+    400000: Highr
+    400002: Highr1
+    400004: Highr2
+    400006: Highr3
+    400008: Highr4
+    400010: Highr5
+    400012: Highr6
+    400014: Highr7
+    400016: Highr8
+    400018: Highrise_1
+    400020: highrise_1
+    400022: Highrise_2
+    400024: Highrise_3
+    400026: Highrise_4
+    400028: Highrise_5
+    400030: Highrise_6
+    400032: Highrise_7
+    400034: Highrise_8
+    400036: Highrise_9
+    400038: //RootNode
+    2300000: Highr
+    2300002: Highr1
+    2300004: Highr2
+    2300006: Highr3
+    2300008: Highr4
+    2300010: Highr5
+    2300012: Highr6
+    2300014: Highr7
+    2300016: Highr8
+    2300018: Highrise_1
+    2300020: highrise_1
+    2300022: Highrise_2
+    2300024: Highrise_3
+    2300026: Highrise_4
+    2300028: Highrise_5
+    2300030: Highrise_6
+    2300032: Highrise_7
+    2300034: Highrise_8
+    2300036: Highrise_9
+    3300000: Highr
+    3300002: Highr1
+    3300004: Highr2
+    3300006: Highr3
+    3300008: Highr4
+    3300010: Highr5
+    3300012: Highr6
+    3300014: Highr7
+    3300016: Highr8
+    3300018: Highrise_1
+    3300020: highrise_1
+    3300022: Highrise_2
+    3300024: Highrise_3
+    3300026: Highrise_4
+    3300028: Highrise_5
+    3300030: Highrise_6
+    3300032: Highrise_7
+    3300034: Highrise_8
+    3300036: Highrise_9
+    4300000: Highrise_1
+    4300002: Highrise_2
+    4300004: Highrise_3
+    4300006: Highrise_4
+    4300008: Highrise_5
+    4300010: Highrise_6
+    4300012: Highrise_7
+    4300014: Highrise_8
+    4300016: Highrise_9
+    4300018: Highr
+    4300020: Highr1
+    4300022: Highr2
+    4300024: highrise_1
+    4300026: Highr3
+    4300028: Highr4
+    4300030: Highr5
+    4300032: Highr6
+    4300034: Highr7
+    4300036: Highr8
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
