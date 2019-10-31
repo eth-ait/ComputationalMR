@@ -69,13 +69,13 @@ We use the [Pupil Labs VR addon for the HTC Vive Pro](https://pupil-labs.com/pro
 
 ###### Index of Pupillary Activity
 
-The IPA code is based on the code provide in the paper by [Duchowski et al. (CHI 2018)](https://dl.acm.org/citation.cfm?id=3173856)/. It can be found in the file *Util\pupil-unity-gaze-server.py*.
+The IPA code is based on the code provide in the paper by [Duchowski et al. (CHI 2018)](https://dl.acm.org/citation.cfm?id=3173856). It can be found in the file *Util\pupil-unity-gaze-server.py*.
 Unity starts the local server automatically. In order to enable it, you must set the path to the script. In the scenes, there is an object *GazeController*. Specify the *Path To Gaze Server* so that it points to the file (absolute path).
 
 In order to run the **Python 3.6** script from Unity, the following pip packages must be installed:  
 *pip install PyWavelets numpy zmq msgpack keyboard*  
 
-If you do now with to use the cognitive load estimation, simply disable the *GazeController* object.
+If you do not want to use the cognitive load estimation, simply disable the *GazeController* object.
 
 # Contact Information
 For questions or problems please file an issue or contact [david.lindlbauer@inf.ethz.ch](mailto:david.lindlbauer@inf.ethz.ch), and use the Github issues page.
